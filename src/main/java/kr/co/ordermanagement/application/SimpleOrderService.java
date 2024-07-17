@@ -35,6 +35,12 @@ public class SimpleOrderService {
         return orderResponseDto;
     }
 
+    public OrderResponseDto findById(Long orderId) {
+        Order order = orderRepository.findById(orderId);
+        OrderResponseDto orderResponseDto = OrderResponseDto.toDto(order);
+        return orderResponseDto;
+    }
+
     private List<OrderedProduct> makeOrderedProducts(List<OrderProductRequestDto> orderProductRequestDtos) {
         return orderProductRequestDtos
                 .stream()

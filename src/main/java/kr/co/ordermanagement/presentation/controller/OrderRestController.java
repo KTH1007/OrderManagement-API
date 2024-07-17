@@ -3,11 +3,10 @@ package kr.co.ordermanagement.presentation.controller;
 import kr.co.ordermanagement.application.SimpleOrderService;
 import kr.co.ordermanagement.presentation.dto.OrderProductRequestDto;
 import kr.co.ordermanagement.presentation.dto.OrderResponseDto;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +23,13 @@ public class OrderRestController {
     @PostMapping("/orders")
     public ResponseEntity<OrderResponseDto> createOrder(@RequestBody List<OrderProductRequestDto> orderProductRequestDtos) {
         OrderResponseDto orderResponseDto = simpleOrderService.createOrder(orderProductRequestDtos);
+        return ResponseEntity.ok(orderResponseDto);
+    }
+
+    // 주문번호로 조회 API
+    @GetMapping("/orders/{orderId}")
+    public ResponseEntity<OrderResponseDto> getOrderById(@PathVariable Long orderId) {
+        OrderResponseDto orderResponseDto = simpleOrderService.findById(orderId);
         return ResponseEntity.ok(orderResponseDto);
     }
 }
