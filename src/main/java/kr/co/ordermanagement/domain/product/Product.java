@@ -47,7 +47,7 @@ public class Product {
 
     public void checkEnoughAmount(Integer orderedAmount) {
         if(this.amount < orderedAmount)
-            throw new NotEnoughAmountException(this.id + "번 수량이 부족합니다.");
+            throw new NotEnoughAmountException(this.id + "번 상품의 수량이 부족합니다.");
     }
 
     public void decreaseAmount(Integer orderedAmount) {
