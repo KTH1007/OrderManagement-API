@@ -51,6 +51,14 @@ public class SimpleOrderService {
         return orderResponseDto;
     }
 
+    public List<OrderResponseDto> findByState(State state) {
+        List<Order> orders = orderRepository.findByState(state);
+        List<OrderResponseDto> orderResponseDtos = orders.stream()
+                .map(order -> OrderResponseDto.toDto(order))
+                .toList();
+        return orderResponseDtos;
+    }
+
     private List<OrderedProduct> makeOrderedProducts(List<OrderProductRequestDto> orderProductRequestDtos) {
         return orderProductRequestDtos
                 .stream()
