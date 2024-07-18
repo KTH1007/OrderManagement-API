@@ -47,4 +47,11 @@ public class OrderRestController {
         List<OrderResponseDto> orderResponseDtos = simpleOrderService.findByState(state);
         return ResponseEntity.ok(orderResponseDtos);
     }
+
+    // 주문 취소 API
+    @PatchMapping("/orders/{orderId}/cancel")
+    public ResponseEntity<OrderResponseDto> cancelOrderById(@PathVariable Long orderId) {
+        OrderResponseDto orderResponseDto = simpleOrderService.cancelOrderById(orderId);
+        return ResponseEntity.ok(orderResponseDto);
+    }
 }
